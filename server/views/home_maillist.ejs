@@ -1,0 +1,36 @@
+﻿<script id="MailList" type="text/html">
+<% for(var i=0;i < list.length; i++){ 
+var item =list[i];
+  %>
+<li mid=<%=item.mid%>>
+	<div class="mailListConBox clearfix">
+		<a href="#" class="mailListConBox_img"><img width="42" src="<%=(item.ImgUrl.indexOf("http")>=0?item.ImgUrl:imagesDomain+item.ImgUrl)%>" alt="" title="" /></a>
+		<div class="mailListConBox_info clearfix">
+			<div class="mailListConBox_infoLeft">
+				<span name="from"><%=item.Name%></span>
+				<i class="i_icoVips" addr="<%=item.addr%>" style="display:none"></i>
+				
+				
+				<p class="mailListConBox_infoCon"><strong name="subject"><%=item.subject%></strong><span name="summary"><%=item.summary%></span></p>
+			</div>
+			<div class="mailListConBox_infoTime">
+				<%if(item.attachmentNum>0){%>
+				<i class="i_icoAccessory"></i>
+				<%}%>
+				<span name="sp_receive"><%=item.receiveDateRel%></span>
+				<!--<i class="i_icoWaits"></i>-->
+				<a href="javascript:" name="delete_mail" style="display:none">删除</a>
+				<p>
+				<%if(item.flags && item.flags.starFlag){%>
+				<i class="i_icoStarOn"></i>
+				<%}else{%>
+				<i class="i_icoStar"></i>
+				<%}%>
+				</p>
+			</div>
+		</div>
+	</div>
+</li>
+<% } %>
+<input type="hidden" id="today_mail_count" value="<%=todayCount%>"/>
+</script>

@@ -1,0 +1,328 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="Keywords" content=""/>
+<meta name="Description" content=""/>
+<title>139邮箱</title>
+<script>
+document.domain = window.location.host.match(/[^.]+\.[^.]+$/)[0];
+</script>
+<script>
+	var inlinedInitDataConfigJSON = <%-model.stringifySafe(data.rmInitDataConfig)%>;
+	inlinedInitDataConfigJSON && top.$App && top.$App.trigger("welcome_getInitDataConfig_load",inlinedInitDataConfigJSON);
+</script>
+<script>
+	var inlinedGetInfoSetJSON = <%-model.stringifySafe(data.mwInfoSet)%>;
+	inlinedGetInfoSetJSON && top.$App && top.$App.trigger("welcome_getInfoSet_load",inlinedGetInfoSetJSON);
+</script>
+<script>
+	var inlinedQueryUserInfoJSON = <%-model.stringifySafe(data.addrQueryUserInfo)%>;
+	inlinedQueryUserInfoJSON && top.$App && top.$App.trigger("welcome_QueryUserInfo_load",inlinedQueryUserInfoJSON);
+</script>
+<script>
+	var inlineBirthContactsInfo = <%-model.stringifySafe(data.birthContactsInfo)%>;
+	inlineBirthContactsInfo && top.$App && top.$App.trigger("welcome_birthContactsInfo_load",inlineBirthContactsInfo);
+</script>
+<script>
+    top.m139LoadScript('libs.pack.js', document);
+    top.m139LoadScript('m139.core.pack.js', document);
+    top.loadCSS(["common/global.css", "module/welcome.css"], document);
+    top.$App && top.$App.setModuleSkinCSS && top.$App.setModuleSkinCSS(document);
+</script>
+</head>
+
+<body class="mainIframeBg_noBg">
+<div class="welcomeBox bgPadding">
+    <div>
+	    <div class="welcomeContent">
+		<div class="welcomeMain">
+			<!--消息提醒-->
+			<div id="lefttext" class="nessageNameBox">
+				<ul class="nessageReminding">
+                    <li><%-(function(){
+					    var html = "";
+					    try{
+                            var ad = data.mwUnifiedPositionContent.var["web_057"];
+                            html = ad[0].content;
+						}catch(e){}
+                        return html;
+                    })()%></li>
+				</ul>
+			</div>
+			<!--个人邮箱信息-->
+			<div class="mailInformation mt_20 clearAll">
+				<div class="peoPhoneBox" bh="welcome_headimg">
+                    <img src="<%-userImageUrl%>" id="userImg" alt="我的头像"/>
+                 </div>
+				<div class="mailInformation_funInfo fl">
+					<h2 id="hello">
+                        <a href="javascript:top.$App.show('account')" id="helloword" bh="welcome_hello"><%=userName%></a>，<span class="mailInformation_span" id="greeting"><%=greetingString%></span>
+                    </h2>
+                    <span>
+                        <a id="g3Btn" style="display:none" href="javascript:;" title="G3通话"><i class="i_g3"></i></a>
+                        <a id="shequLink" href="javascript:;" title="移动微博"><i class="i_webbo"></i></a>
+                        <a id="linkFetion" href="javascript:;" title="同窗"><i class="i_schoolmate"></i></a>
+                        <a id="fetionElem" style="display:none" href="javascript:;" title="飞信"><i class="i_fetionGray"></i></a>
+                    </span>
+					<p class="mailInformation_mailInfo fz_14 mt_10">
+                        <i class="i_mail"></i>
+                        <span id="unreadBox">
+                            <%
+                                var unreadCount = model.getUnreadMailCount(data.rmInitDataConfig);
+                                if (unreadCount == 0) {
+                            %>
+                                <span id="noUnread" class="gray" style="*display:inline-block;*position:relative;*top:-2px;*padding:0 5px;">没有未读邮件</span>
+                            <% } else if(unreadCount > 0) { %>
+                                <a onclick='top.$App.trigger("mailCommand", { command: "viewUnread", fid: 0 });' href="javascript:;" id="lnkUnread" bh="welcome_unread" class="c_457fbd">
+                                未读邮件(<var class="c_ff8157"><%-unreadCount%></var>)</a>
+                            <% } %>
+                            </span>
+                        <span id="otherUnRead">
+                            <% 
+                                for(var i=0;i < showUnreadFolders.length; i++){ 
+                                    var folder = showUnreadFolders[i]; 
+                            %>
+                                <a onclick='top.$App.showMailbox(<%- folder.fid %>)' fid="<%- folder.fid %>" href="javascript:;" class="c_457fbd">
+                                    <%= folder.name%>
+                                    <% if(folder.stats.unreadMessageCount > 0) { %>
+                                        (<var class="c_ff8157"><%-folder.stats.unreadMessageCount%></var>)
+                                    <% } %>
+                                </a>
+                            <% } %>
+                        </span>
+                    </p>
+				</div>
+			</div>
+			<!--励志语提示-->
+			<div style="top:80px;left:180px; z-index:1000; width:214px; display:none" class="tipsLayer" id="tipsLayer">
+				<div class="tipsLayerMain">
+					<div class="tipsLayerMainInner tipsLayerShareBox">
+						<dl>
+							<dd>
+								<div class="tipsLayerShare">
+									<%
+										var title = "%23139邮箱微语录%23\“"+greetingString+"\”——每次登录邮箱都能看到一句温暖或激励的话，内心有所触动。分享自@139邮箱  http://mail.10086.cn";
+										var shareUrl = "http://service.weibo.com/share/share.php?url=&appkey=4XCvQX&pic=&title="+title;
+									%>
+									<a href="<%- shareUrl %>" onclick="top.BH('greetings_blog_share');document.getElementById('tipsLayer').style.display='none';" target="_blank"><i class="i-conSina"></i>微博分享</a>
+
+									<a href="javascript:;" onclick="top.$App.show('compose',{type:'share',greetingString:'<%- greetingString %>'});top.BH('greetings_compose_share');document.getElementById('tipsLayer').style.display='none';"><i class="i-conMail"></i>告诉朋友</a>
+								</div>
+							</dd>
+						</dl>	
+					</div>
+				</div>
+				<i class="i-tipsLayerArrow tipsTopArrow"></i>
+				<div class="tipsLayerMain_div"></div>
+			</div>
+
+		</div>
+	</div>	
+
+	    <div class="welcomeAside">
+		<ul class="welcomeTab clearfix" role="tablist" id="ul_userinfo">
+			<li class="current" aria-selected="true" role="tab"><a href="javascript:;" hidefocus="hidefocus">个人信息</a></li>
+			<!-- <li aria-selected="false" role="tab"><a href="javascript:;" onclick="return false;" hidefocus="hidefocus">签到</a></li> -->
+			<li aria-selected="false" role="tab"><a href="javascript:;" onclick="return false;" hidefocus="hidefocus">天气</a></li>
+		</ul>	
+		<div class="welcomeTabContent">
+			<div class="welcomeTabList clearfix" role="region" style="display:block">
+				<ul style="width:164px;float:left;">
+					<li id="li_score">我的积分：
+						<span class="c_457fbd" id="link_score">
+                            <a class="c_457fbd" href="http://zone.mail.10086.cn/api/sso/ssoformail.ashx?to=CN201204A1&flag=4&sid=<%-sid%>" target="_blank" id="myintegral" bh="welcome_integral">
+                            <%-mainUserIntegral.integral%></a>
+                            <span class="line">|</span>
+                            <a id="scoreExchange" href="http://zone.mail.10086.cn/api/sso/ssoformail.ashx?to=CN201204A1&amp;flag=4&amp;sid=<%-sid%>" target="_blank" >
+                            兑换</a>
+                        </span>
+					</li>
+					<li>上次登录：<span id="sp_lastLogin"><%-lastLoginDate%></span> <a href="javascript:top.$App.show('selfSearch');" class="c_457fbd">查询</a></li>
+
+					<li class="p_relative">邮箱容量：<%
+							var volume = "";
+							try {
+								if (data.mwInfoSet.var.userMainData.provCode == "1" || data.mwInfoSet.var.userMainData.serviceItem == "0017") {
+									volume = "无限容量";
+								} else {
+									var limitSize = data.mwInfoSet.var.mailCapacity.totalSize;
+									volume = model.getFileSizeText(limitSize * 1024);
+								}
+							} catch (e) { }
+						%>
+						<a href="javascript:top.$App.show('selfSearch','&type=4');" id="volumeCapacity" class="c_457fbd"><%-volume%></a>
+
+						<div id="volumeUsed" style="right:0px;top:-28px;*top:-30px; display:none" class="tipsOther">
+							<div class="tips-text">
+								已使用(<b><%-(function(){
+						    var result = "";
+							try{
+								var usedSize = model.getMessageSize(data.rmInitDataConfig).usedSize;
+								var limitSize = model.getMessageSize(data.rmInitDataConfig).limitSize;
+								//总容量，除1.2的逻辑是，因为实际总容量=limitMessageSize*1.2倍，是系统多预留出来的
+								var realSize = parseInt(limitSize) / 1.2;
+								//已经使用容量不能大于限定容量
+								usedSize = Math.min(usedSize,realSize);
+								result = model.getFileSizeText(usedSize);
+								if(volume != "无限容量"){
+								   result += "，" + Math.round(usedSize / realSize * 10000) / 100 + "%";
+								}
+							}catch(e){}
+							return result;
+						})()%></b>)
+							</div>
+							<span class="tipsBottom" style="left:10px"></span>
+						</div>
+					</li>					
+				</ul>
+				<iframe src="<%-protocol%>//zone.mail.10086.cn/api/sso/ssoformail.ashx?to=CN201306B1&flag=6&sid=<%-sid%>" scrolling="no" frameborder="no" width="80" height="65" class="fr"></iframe>
+			</div>
+
+
+			
+			<!-- <div class="welcomeTabList" role="region"></div> -->
+			<div class="welcomeTabList" role="region">
+                <div id="weatherTool"></div>
+                <!--城市-->
+                <div class="weathertips" id="cityBtnTip">
+                    <div class="tips-text">
+                        选择地点：
+                        <div class="seloption">
+                            <select id="province"></select>
+                            <select id="city">
+                                <option value="0">---城市---</option>
+                            </select>
+                        </div>
+                        <p class="current"><a id="queryWeather" href="javascript:;">查看天气</a> <a id="setWeather" href="javascript:;">设为默认</a></p><!--  链接可以击点时 加上 current  -->
+                        <a class="i_close" href="javascript:;" title="关闭"><!-- 等级3 --></a>
+                    </div>
+                    <span class="tips-top diamond"></span>
+                </div>
+                <!--天气-->
+                <div class="weathertips dayWeatherBox tipsBox" id="temperatureTips"></div>
+            </div>
+		</div>
+	</div>
+    </div>
+
+    <div>
+	    <div class="welcomeContent mt_15">
+		<div class="welcomeMain">
+			<!--运营区-->
+			<div class="operations">
+				<div class="operations_title pr_15 clearfix">
+					<ul class="fl" role="tablist" id="ul_recommand">
+						<li class="current" aria-selected="true" role="tab"><a href="javascript:;" hidefocus="true"><span>邮箱推荐</span></a></li>
+						<li aria-selected="false" role="tab"><a href="javascript:;" onclick="return false;" hidefocus="true"><span>用户中心</span></a></li>
+						<li aria-selected="false" role="tab"><a href="javascript:;" hidefocus="true"><span>实验室</span></a></li>
+						<li aria-selected="false" role="tab"><a href="javascript:;" hidefocus="true"><span>精品业务</span></a></li>
+						<li aria-selected="false" role="tab" style="display:none;"><a href="javascript:;" hidefocus="true"><span>应用商城</span></a></li>
+						<li aria-selected="false" role="tab" id="li_recommand_bill" style="display:none"><a href="javascript:;" hidefocus="true"><span>邮箱营业厅</span></a></li>
+					</ul>	
+					<a href="javascript:;" class="setBtn fr" title="设置" id="btn_customTab"><i class="i_setn"></i></a>
+				</div>
+				<div class="scrollObj">
+					<div class="operationsInfo" id="J_auto" role="region" style="display:block;">
+                        <%-(function(){
+							var html = "";
+							try{
+								var ad = data.mwUnifiedPositionContent.var["web_050"];
+								html = ad[0].content;
+								if(protocol == "https:"){
+									html = html.replace(/http:\/\/images.139cm.com/g,"https://appmail3.mail.10086.cn/images_139cm");
+								}
+							}catch(e){}
+							return html;
+                        })()%>
+                        <p id="p_scrollTab" class="smailCarousel mt_10 ta_c"><a href="javascript:;" class="current"><i></i></a><a href="javascript:;"><i></i></a><a href="javascript:;"><i></i></a><a href="javascript:;"><i></i></a></p>
+					</div>
+					<div class="operationsInfo" role="region"></div>
+					<div class="operationsInfo" role="region"></div>
+					<div class="operationsInfo" role="region"></div>
+					<div class="operationsInfo" role="region"></div>
+					<div class="operationsInfo"></div>
+				</div>
+			</div>
+		</div>
+	</div>	
+
+	    <div class="welcomeAside mt_15">
+		<!--活动中心-->
+		<div class="activityCenter">
+			<div class="activityCenter_title p_relative">
+				<h3>活动区</h3><a id="gotoAction" href="javascript:;" class="c_457fbd integration">精彩不停：任务赚积分>></a>
+			</div>
+			<div id="activityCenterInfo" class="activityCenter_info">
+                <%-(function(){
+				    var html = "";
+					try{
+                        var ad = data.mwUnifiedPositionContent.var["web_055"];
+                        var ad2 = data.mwUnifiedPositionContent.var["web_056"];
+                        html = ad[0].content + ad2[0].content;
+                        if(protocol == "https:"){
+							html = html.replace(/http:\/\/images.139cm.com/g,"https://appmail3.mail.10086.cn/images_139cm");
+						}
+					}catch(e){}
+                    return html;
+                })()%>
+            </div>
+		</div>
+	</div>
+    </div>
+</div>
+<!--页脚区-->
+<ul class="welcomeFooter">
+	<li id="bottomLink">
+        <%-(function(){
+            var html = "";
+			try{
+				var ad = data.mwUnifiedPositionContent.var["web_060"];
+				html = ad[0].content;
+			}catch(e){}
+			return html;
+        })()%>
+    </li>
+	<li><span>标准版2.3</span><span class="wfLine">-</span><a target="_top" bh="welcomeb_baseversion" id="btn_base" href="javascript:;" class="c_457fbd">基础版</a><span class="wfLine">|</span><a href="http://www.miibeian.gov.cn/" target="_blank">京ICP备05002571号</a><span class="wfLine">©</span><a href="http://www.10086.cn/" target="_blank">中国移动通信版权所有</a></li>
+</ul>
+</body>
+<script>
+    var inlineUnifiedPositionContent = <%-(function(){
+		var json = data.mwUnifiedPositionContent;
+		return model.stringifySafe(json);
+	})()%>;
+</script>
+
+<script>
+    top.m139LoadScript("welcome_v3.html.pack.js", document);
+    $(function () {
+
+        var userImgEl = $('#userImg');
+
+        var hoverTarget = userImgEl.parent('.peoPhoneBox');
+          hoverTarget.hover(
+            function(){
+              $(this).append('<span></span><p>更换头像</p>');
+            },
+            function(){
+              $(this).find('span').remove();
+              $(this).find('p').remove();
+            }
+          )
+        hoverTarget.bind('click',function(){
+                top.BH("home_page_face");
+             new top.M2012.UI.View.ImageCropper({
+                 imageUrl:userImgEl.attr('src'),
+                 onImgSaving:function(imageInfo){
+                     userImgEl.attr('src',imageInfo.imageUrl);
+                 }
+             });
+        })
+	window.welcomeView = new M2012.Welcome.Main.View();
+        welcomeView.render();
+
+
+    });
+    
+</script>
+</html>

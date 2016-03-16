@@ -1,0 +1,24 @@
+{
+  "name": "M2012Server",
+  "version": "0.1.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "compression": "~1.0.2",
+    "ejs": "~1.0.0",
+    "cookie-parser": "~1.1.0",
+    "errorhandler": "~1.2.2",
+    "express": "~4.0.0",
+    "log4js": "~0.6.21"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mail139",
+    "welcome"
+  ],
+  "author": "lifula@139.com, xiaoyu44@139.com",
+  "license": "BSD-2-Clause"
+}

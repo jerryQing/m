@@ -1,0 +1,175 @@
+
+<ul class="mailListCon clearfix">
+	<li>
+		<div class="mailListConBox clearfix">
+			<a href="#" class="mailListConBox_img"><img src="../../images/module/welcome/img_01.jpg" alt="" title="" /></a>
+			<div class="mailListConBox_info clearfix">
+				<div class="mailListConBox_infoLeft">
+					<ul class="mailListConBox_list">
+						<li class="hover" title="“2015年1月139邮箱2015年1月139邮箱2015年1月139邮箱2015年1月139邮箱“邮件今日待处理">“<strong>2015年1月139邮箱..</strong>”邮件今日待处理<span class="mailListConBox_info_ok"><a href="#">标记完成</a><a href="#">取消任务</a></span></li>
+						<li>“<strong>12月15日会议邀请</strong>”邮件今日待处理</li>
+						<li>“<strong>12月15日会议邀请</strong>”邮件今日待处理</li>
+						<li>“<strong>{name}</strong>”邮件今日待处理</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</li>
+	<li>
+		<div class="mailListConBox clearfix">
+			<a href="#" class="mailListConBox_img"><img src="../../images/module/welcome/img_02.jpg" alt="" title="" /></a>
+			<div class="mailListConBox_info clearfix">
+				<div class="mailListConBox_infoLeft">
+					<ul class="mailListConBox_list">
+						<li class="hover">今天“<strong>赛龙舟</strong>”活动开始<span class="mailListConBox_info_ok"><a href="#">忽略</a></span></li>
+						<li>11:00“<strong>公司旅游</strong>”活动开始</li>
+						<li>16:00“<strong>看电影</strong>”活动开始</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</li>
+	<li>
+		<div class="mailListConBox clearfix">
+			<a href="#" class="mailListConBox_img"><img src="../../images/module/welcome/img_03.jpg" alt="" title="" /></a>
+			<div class="mailListConBox_info clearfix">
+				<div class="mailListConBox_infoLeft">
+					<ul class="mailListConBox_list">
+						<li>李刚 邀请您参加“ <strong>朋友聚会</strong>”活动</li>
+						<li class="hover">蔡冠冕 邀请您参加“<strong>部门周会</strong>”会议<span class="mailListConBox_info_ok"><a href="#">接受</a><a href="#">拒绝</a></span></li>
+						<li>胡老板 邀请您参加“<strong>爬山</strong>”活动</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</li>
+	<li>
+		<div class="mailListConBox clearfix">
+			<a href="#" class="mailListConBox_img"><img src="../../images/module/welcome/img_04.jpg" alt="" title="" /></a>
+			<div class="mailListConBox_info clearfix">
+				<div class="mailListConBox_infoLeft">
+					<ul class="mailListConBox_listOne">
+						<li>刘志刚 分享给您“ <strong>亚冠比赛</strong>”日历</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</li>
+	<li>
+		<div class="mailListConBox clearfix">
+			<a href="#" class="mailListConBox_img"><img src="../../images/module/welcome/img_05.jpg" alt="" title="" /></a>
+			<div class="mailListConBox_info clearfix ">
+				<div class="mailListConBox_infoLeft">
+					<ul class="mailListConBox_listTwo">
+						<li>李小康、蔡爱明、胡志军等 <strong class="orange">5个</strong> 今日生<br />日，快送上生日祝福吧！</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</li>
+	<li>
+		<div class="mailListConBox clearfix">
+			<a href="#" class="mailListConBox_img"><img src="../../images/module/welcome/img_06.jpg" alt="" title="" /></a>
+			<div class="mailListConBox_info clearfix ">
+				<div class="mailListConBox_infoLeft">
+					<ul class="mailListConBox_listOne">
+						<li>您的报刊今天更新了 <strong class="orange">12篇</strong> 文章</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</li>
+	<li class="on">
+		<div class="mailListConBox clearfix noLine">
+			<a href="#" class="mailListConBox_img"><img src="../../images/module/welcome/img_07.jpg" alt="" title="" /></a>
+			<div class="mailListConBox_info clearfix ">
+				<div class="mailListConBox_infoLeft">
+					<ul class="mailListConBox_listTwo">
+						<li>毕业照.jpg、年度总结.doc、阿里金卡. <br />psd等<strong class="orange">5人</strong>文件即将到期</li>
+					</ul>
+				</div>
+				<div class="mailListConBox_infoTime" style="right:6px; top:10px;">
+					<a href="#">续期</a><a href="#">忽略</a>
+				</div>
+			</div>
+		</div>
+	</li>
+</ul>
+
+
+<%
+
+var propMaps = [
+	{className: "mailListConBox_list", imgUrl: "/m2012/images/module/welcome/img_01.jpg"},
+	{className: "mailListConBox_list", imgUrl: "/m2012/images/module/welcome/img_01.jpg"},
+	{className: "mailListConBox_list", imgUrl: "/m2012/images/module/welcome/img_02.jpg"},
+	{className: "mailListConBox_list", imgUrl: "/m2012/images/module/welcome/img_03.jpg"},
+	{className: "mailListConBox_listOne", imgUrl: "/m2012/images/module/welcome/img_04.jpg"},
+	{className: "mailListConBox_listTwo", imgUrl: "/m2012/images/module/welcome/img_05.jpg"},
+	{className: "mailListConBox_listOne", imgUrl: "/m2012/images/module/welcome/img_06.jpg"},
+	{className: "mailListConBox_listTwo" imgUrl: "/m2012/images/module/welcome/img_07.jpg"}
+];
+
+var group, list;
+for(var i = 0; i < types.length; i++){ 
+	list = types[i];
+	group = list.group;
+%>
+	<li>
+		<div class="mailListConBox clearfix">
+			<a href="javascript:void(0);" class="mailListConBox_img"><img src="<%=propMaps[list.type].imgUrl%>" alt="" /></a>
+			<div class="mailListConBox_info clearfix">
+				<div class="mailListConBox_infoLeft">
+					<ul class="<%=propMaps[list.type].className%>">
+					<%=
+					(function(type){
+						switch(type)
+						{
+						case 1: 
+						{
+							return Toolkit.Text.formatBatch("<li>“<strong>{name}</strong>”邮件今日待处理</li>", group).join("");
+							
+						}
+						break;
+						case 2:
+						{
+							return Toolkit.Text.formatBatch("<li>“<strong>{name}</strong>”活动开始</li>", group).join("");
+						}
+						break;
+						case 3:
+						{
+						return Toolkit.Text.formatBatch("<li>胡老板 邀请您参加“<strong>{name}</strong>”活动</li>", group).join("");
+						}
+						break;
+						case 4:
+						{
+						 return Toolkit.Text.formatBatch("<li>刘志刚 分享给您“ <strong>{name}</strong>”日历</li>", group).join("");
+						}
+						break;
+						case 5:
+						{
+						 return Toolkit.Text.formatBatch("<li>李小康、蔡爱明、胡志军等 <strong class="orange">{length}个</strong> 今日生<br />日，快送上生日祝福吧！</li>", group).join("");
+						}
+						break;
+						case 6:
+						{
+						 return Toolkit.Text.formatBatch("<li>您的报刊今天更新了 <strong class="orange">{num}篇</strong> 文章</li>", group).join("");
+						}
+						break;
+						case 7:
+						{
+							if(group.length <= 3){
+							}
+						 return Toolkit.Text.formatBatch("<li>{fileName}<strong class="orange">{length}个</strong>文件即将到期</li>", group).join("");
+						}
+						break;
+						default: break;
+						}
+					})(list.type);
+					%>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</li>
+<% } %>

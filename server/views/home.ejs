@@ -1,0 +1,360 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="Keywords" content=""/>
+<meta name="Description" content=""/>
+<title>139邮箱</title>
+	<link rel="stylesheet" href="/m2012/css/common/global.css" type="text/css"/>
+	<link rel="stylesheet" href="/m2012/css/module/welcomeNew.css" type="text/css"/>
+	<!--<link rel="stylesheet" href="/m2012/css/skin/skin_lightblue.css" type="text/css" id="cssfile" /> -->
+
+<script>
+document.domain = window.location.host.match(/[^.]+\.[^.]+$/)[0];
+
+function $id(id){
+	return document.getElementById(id);
+}
+
+// 性能测试代码，收集加载时间
+var perfObj = {};
+perfObj.start = +new Date();
+
+//var loadedModule = {};
+
+//bigpipe加载回调
+function render(key, data){
+	perfObj[key] = new Date().getTime();
+	console.warn(key, perfObj[key]);
+	switch(key){
+		case "MailList":
+			$id("mailListContainer").innerHTML = $id("MailList").innerHTML;
+			if(!window.mailListView){ //避免重复创建实例
+				window.mailListView=new Welcome.MailList.View();
+			}
+			mailListView.render();
+		break;
+		case "YesterdayMail":
+			if(window.initRemindsView) {
+				initRemindsView.onYesterdayMailArrive(data);
+			} else {
+				window._yesterday_mail_count_ = data;
+			}
+			//$id("yes_count").innerHTML=data["stats"].messageCount+"封";
+			break;
+		case "rmInitDataConfig":
+			if(window.initDataConfigView) initDataConfigView.render(data);
+			top.$App && top.$App.trigger("welcome_getInitDataConfig_load", data);
+		break;
+		case "mwInfoSet":
+			if(window.initUserInfoView) initUserInfoView.render(data["var"]);
+			top.$App && top.$App.trigger("welcome_getInfoSet_load", data);
+		break;
+		case "addrQueryUserInfo":
+			if(window.initAddrQueryUserInfoView) initAddrQueryUserInfoView.render(data.UserInfo);
+			top.$App && top.$App.trigger("welcome_QueryUserInfo_load", data);
+			mainView.userInfoView.render();
+		break;
+		case "mwUnifiedPositionContent":
+			if(window.initUnifiedPositionContentView) initUnifiedPositionContentView.render(data["var"]);
+		break;
+		case "birthContactsInfo":
+			initRemindsView.renderBirthRemind(data);
+			top.$App && top.$App.trigger("welcome_birthContactsInfo_load", data);
+		break;
+		case "RemindMsg":
+			if(window.initRemindsView) initRemindsView.render(data);
+			window.remindData=data;//通知
+		    break;
+        case "CalendarView":
+			if(window.initRemindsView) {
+				initRemindsView.initMsgCount(data);
+			} else {
+				window._calendar_view_data_ = data;
+			}
+			
+            var view  = window.calendarIndexView = new M2012.Welcome.Calendar.View();
+            view.showCurrentMonth(data);
+            view.onSelectDate(function(date){
+                date = $Date.parse(date + " 00:00:00");
+                mainView.timeSwitcherView.switchDate(date);	// => trigger("request", date)
+            });
+            if(window.initRemindsView) initRemindsView.initMsgCount(data);
+            break;
+        case "WeatherView":
+            var weatherModel = new M2012.Welcome.Weather.Model;
+            new M2012.Welcome.Weather.View({model: weatherModel, initData: data});
+            break;
+        case "MagazineView":
+            new M2012.Welcome.Magazine.View({initData: data});
+            break;
+	}
+
+    mainView.adjustContentListHeight();
+	//setTimeout(function(){
+	//	loadedModule[key] = true;
+	//}, 0);
+}
+
+top.m139LoadScript('libs.pack.js', document);
+
+</script>
+
+<body class="bodybg">
+
+	<div id="mainContainer" class="welcomeNew">
+		<div class="welcomeNew_right">
+			<div class="welcomeNew_rightCon clearfix">
+				<div class="welcomeNewSon_left">
+					<div class="welcomeNewSon_leftCon">
+						<div class="modBox modBoxCon">
+							<div id="contentList" class="mailList">
+								<div id="prevDayTitle" class="mailListHeader mailListHeaderTop clearfix" style="display: none;">
+									<strong class="mailListHeader_title">昨天 <span></span></strong>
+									<div class="mailListHeaderCon">
+										<span id="prevDayMail"><span class="orange"><var>-</var>封</span>未读邮件</span><span class="js_dot">、</span><span id="prevDayInvite"><span class="orange"><var>-</var>个</span>活动邀请</span><span class="js_dot">、</span><span id="prevDayShare"><span class="orange"><var>-</var>个</span>日历共享</span>
+										<!-- <span class=" tips_msg"><i class="i_icoMail mr_5"></i>您昨天有 <strong class="orange">2封</strong> 未读邮件</span>
+										<span class="ml_55 tips_msg"><i class="i_icoRemind mr_5"></i>您昨天有 <strong class="orange">2封</strong> 未读邮件</span> -->
+									</div>
+								</div>
+								<div id="currDayTitle" class="mailListHeader clearfix">
+									<strong class="mailListHeader_title">今天 <span></span></strong>
+								</div>
+								<div class="mailList_con">
+									<i class="i_icoListPoint"></i>
+									<ul class="mailList_con_ul ">
+										<li class="mailList_con_li clearfix">
+											<ul class="mailListCon" id="mailListContainer">
+												<li style="text-align: center; vertical-align:middle;line-height:50px">加载中...</li>
+											</ul>
+											<p class="mt_2"><a href="javascript:top.$App.doCommand('viewUnread')" class="mailListCon_btn" style="display:none;">更多未处理邮件</a></p>
+										</li>
+										<li id="remindList" class="mailList_con_li mt_5 clearfix" style="display: none;">
+										</li>
+									</ul>
+								</div>
+								<div id="nextDayTitle" class="mailListHeader mailListHeaderBottm clearfix" style="display: none;">
+									<strong class="mailListHeader_title">明天 <span></span></strong>
+									<div class="mailListHeaderCon">
+										<span id="nextDayActivity"><span class="orange"><var>-</var>个</span>日历活动</span><span class="js_dot">、</span><span id="nextDayTask"><span class="orange"><var>-</var>个</span>待办事项</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="welcomeNewSon_right">
+					<div class="modBox modBoxCalendar">
+						<i class="i_icoCalendarTop" style="top:143px;"></i>
+						<div class="calendarMod">
+                            <div id='div_calendar'></div><!-- /div_calendar -->
+							<div class="calendarWeather clearfix">
+                                <div class="calendarWeather_btn" style="margin-left:3px; margin-right:5px; overflow: hidden;">
+                                    <iframe style="margin-left:-6px;" src="<%-protocol%>//zone.mail.10086.cn/api/sso/ssoformail.ashx?to=CN201306B1&flag=6&sid=<%-sid%>" scrolling="no" frameborder="no" width="80" height="65"></iframe>
+                                </div>
+								<div style="float:left; width:143px" id="div_weather_today">
+									<span class="calendarWeather_img"><img src="/m2012/images/module/welcome/weather_01.jpg" alt="" title="" /></span>
+									<div class="calendarWeather_info">
+										<strong>深圳 (晴 )</strong>
+										<p>21℃  ~ 13℃</p>
+										<p>良/94</p>
+									</div>
+								</div><!-- / div_weather_today -->
+							</div>
+						</div>
+					</div>
+
+                    <div class="modBox mt_8" style="width:262px" id="div_magazine">
+                        <div class="advertisingOther">
+                            <div class="advertisingOtherTitle clearfix"><strong>报刊杂志</strong><a href="javascript:top.$App.show('googSubscription', {'mtype':4});">更多</a></div>
+                            <div class="advertisingOther_img" id="div_magazine_inner">
+                                <ul class="advertisingOther_ulImg" id="ul_magazine">
+                                    <li><a href="#"><img src="/m2012/images/module/welcome/pic_02.jpg" alt="" title="" /></a></li>
+                                    <li style="display:none;"><a href="#"><img src="/m2012/images/module/welcome/pic_02.jpg" alt="" title="" /></a></li>
+                                    <li style="display:none;"><a href="#"><img src="/m2012/images/module/welcome/pic_02.jpg" alt="" title="" /></a></li>
+                                </ul>
+                                <span></span>
+                                <div class="advertisingOther_ul">
+                                    <p id="p_magazine_title">新疆自驾游拍赛里木湖风光</p>
+                                    <ul class="clearfix" id="ul_magazine_node">
+                                        <li class="seld"><a href="javascript:;"></a></li>
+                                        <li><a href="javascript:;"></a></li>
+                                        <li><a href="javascript:;"></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modBox mt_8" style="width:262px; display:none;" id="div_recommend">
+                        <div class="service">
+                            <div class="serviceTitle clearfix"><strong>生活服务推荐</strong><a href="javascript:top.$App.show('googSubscription', {'mtype':5});">更多</a></div>
+                            <ul class="service_list" id="ul_recommend">
+                                <li class="clearfix">
+                                    <a href="#"><img src="/m2012/images/module/welcome/pic_03.jpg" alt="" title="" /></a>
+                                    <div class="service_listCon">
+                                        <strong><a href="#">MM应用商场</a></strong>
+                                        <p>24698756位用户</p>
+                                        <em class="starBox"><em style="width:90%"></em></em>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="modBox mt_8" style="width:262px; display:none;" id="div_myservice">
+                        <div class="service">
+                            <div class="serviceTitle clearfix"><strong>我的服务</strong><a href="javascript:top.$App.show('googSubscription', {'mtype':1});">更多</a></div>
+                            <ul class="service_ul clearfix" id="ul_myservice">
+                                <li>
+                                    <a href="#"><img src="/m2012/images/module/welcome/pic_05.jpg" alt="" title="" /><i class="i_icoService"></i></a>
+                                    <p>和理财</p>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="/m2012/images/module/welcome/pic_05.jpg" alt="" title="" /><i class="i_icoService"></i></a>
+                                    <p>和理财</p>
+                                </li>
+                                <li>
+                                    <a href="#"><img src="/m2012/images/module/welcome/pic_05.jpg" alt="" title="" /><i class="i_icoService"></i></a>
+                                    <p>和理财</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div><!-- /div_myservice -->
+				</div>
+			</div>
+		</div>
+		<div class="welcomeNew_left" style='position:fixed'>
+			<div id="userInfo" class="modBox" style="display: none">
+			</div>
+			<div id="navigate" class="modBox mt_8">
+				<div class="menuOperating">
+					<strong id="compose_new" class="menuOperating_title"><a href="javascript:void(0);"><i class="i_icoWrite"></i>写 信</a></strong>
+					<ul class="menuOperating_list clearfix">
+						<li fid="1"><a href="javascript:;"><i class="i_icoReceive"></i><p>收件箱</p></a></li>
+						<li fid="3"><a href="javascript:;"><i class="i_icoSend"></i><p>已发送</p></a></li>
+						<li fid="2"><a href="javascript:;"><i class="i_icoDraft"></i><p>草稿箱</p></a></li>
+						<li id="li_vip" onclick="top.$App.searchVip();"><a href="javascript:;"><i class="i_icoVip"></i><p>VIP</p></a></li>
+						<li id="li_star" onclick="top.$App.searchMail({flags:{starFlag:1}});"><a href="javascript:;"><i class="i_icoSrar"></i><p>星标</p></a></li>
+						<li id="li_todo" onclick="top.$App.searchTaskmail();"><a href="javascript:;"><i class="i_icoWait"></i><p>待办</p></a></li>
+					</ul>
+				</div>
+			</div>
+			<div id="advertising" class="modBox mt_8" style="display: none;">
+				<div class="advertising">
+					<strong class="advertisingTitle">活动推荐</strong>
+					<p><a href="javascript:void(0);"><img src="/m2012/images/module/welcome/pic_01.jpg" alt="" title="" /></a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!-- todo
+<div class="skin">
+    <div class="skinTop"></div>
+    <div class="skinTopLeft"></div>
+    <div class="skinTopRight"></div>
+	<div class="skinBody"><img src="" alt="" title="" /></div>
+	<div class="skinMenu" style="height:10000px;"></div>
+</div>-->
+
+<div  id="div_weather_box" class='hide' style='position:absolute; z-index:9999;'>
+	<div class="tapWrapper mt_10 hide" id="div_city_area_select">
+		<div class="tapH">
+			<ul class="tap">
+				<li>
+					<a href="javascript:;" class="hover"  id="em_select_city">
+						<em>请选择</em>
+						<i class="i_arrow_down"></i>
+					</a>
+				</li>
+				<li>
+					<a href="javascript:;" class=""  id="em_select_area">
+						<em>请选择</em>
+						<i class=""></i>
+					</a>
+				</li>
+			</ul>
+			<i class="i_close"></i>
+			<span class="clearfix"></span>
+		</div>
+		<div class="" id="div_select_city">
+			<ul class="area-list pt_10"> </ul>
+		</div>
+		<div class="hide" id="div_select_area">
+			<ul class="area-list pt_10"></ul>
+		</div>
+		<span class="clearfix"></span>
+	</div> <!-- /div_city_select --> 
+
+	<!-- 天气 -->
+	<div class="weatherForecast" id='div_weather_forecast'></div><!-- /weatherForecast -->
+</div><!-- /div_weather_box -->
+
+<script>
+
+$(function () {
+
+	perfObj["DOMContentLoaded"] = +new Date();
+	console.log("DOMContentLoaded.");
+	
+	top.window.WELCOME_LOADED=true;
+
+    var userImgEl = $('#userImg');
+    var hoverTarget = userImgEl.parent('.userInfoPic');
+    
+    hoverTarget.hover(function(){
+        $(this).append('<span></span><p>更换头像</p>');
+    }, function(){
+        $(this).find('span').remove();
+        $(this).find('p').remove();
+    });
+    
+    hoverTarget.on('click', function(){
+        top.BH("home_page_face");
+        new top.M2012.UI.View.ImageCropper({
+            imageUrl: userImgEl.attr('src'),
+            onImgSaving: function(imageInfo){
+                userImgEl.attr('src',imageInfo.imageUrl);
+            }
+        });
+	});
+});
+
+perfObj["loadScriptStart"] = +new Date();
+
+top.m139LoadScript('m139.core.pack.js', document);
+
+//setTimeout(function(){
+	top.$App && top.$App.setModuleSkinCSS && top.$App.setModuleSkinCSS(document);
+//}, 50);
+
+top.m139LoadScript("welcome_v4.html.pack.js", document);
+
+</script>
+
+<script>
+
+perfObj["loadScriptEnd"] = +new Date();
+
+window.mainView = new Main.View();
+mainView.render();
+
+perfObj["mainView.render"] = +new Date();
+
+</script>
+
+<script>
+
+perfObj["mainView.render2"] = +new Date();
+
+console.log("wait for welcome_v4.html.pack.js: " + (perfObj["mainView.render"] - perfObj["loadScriptStart"]) + "ms");
+
+function outputPerfLog(){
+	var keys = Object.keys(perfObj);
+	keys.sort(function(a, b){
+		return perfObj[a] - perfObj[b];
+	});
+	for(var i=0,len=keys.length-1; i<len; i++){
+		console.log(keys[i+1] + " - " + keys[i] + ": " + (perfObj[keys[i+1]] - perfObj[keys[i]]) + "ms");
+	}
+}
+</script>

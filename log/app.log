@@ -1,0 +1,40 @@
+[2015-04-14 16:49:02.321] [INFO] app - access home
+[2015-04-14 16:49:02.324] [INFO] app - render....
+[2015-04-14 16:49:02.325] [INFO] app - prepareHTML: Tue Apr 14 2015 16:49:02 GMT+0800 (中国标准时间)
+[2015-04-14 16:49:02.424] [INFO] app - renderData:  Tue Apr 14 2015 16:49:02 GMT+0800 (中国标准时间)
+[2015-04-14 16:49:02.435] [INFO] app - <object>  <int name="fid">1</int>  <string name="order">receiveDate</string>  <string name="desc">1</string>  <int name="start">1</int>  <int name="total">150</int>  <string name="topFlag">top</string>  <int name="sessionEnable">2</int></object>
+[2015-04-14 16:49:02.484] [INFO] app - PID=6936|USERNUMBER=8615889682441|SID=MTQyOTAwMDgzNjAwMTUxMzU4MDEwOQAA000008|PARTID=12|CLIENTIP=127.0.0.1|NAME=HttpClient|STATUS=200|URL=smsrebuild1.mail.10086.cn/setting/s?func=msg:getRemindMsg&comefrom=54&sid=MTQyOTAwMDgzNjAwMTUxMzU4MDEwOQAA000008&cguid=1649024359747|REQUESTTIME=49|SIZE=317
+[2015-04-14 16:49:02.486] [INFO] app - prepareHTML: Tue Apr 14 2015 16:49:02 GMT+0800 (中国标准时间)
+[2015-04-14 16:49:02.502] [INFO] app - PID=6936|USERNUMBER=8615889682441|SID=MTQyOTAwMDgzNjAwMTUxMzU4MDEwOQAA000008|PARTID=12|CLIENTIP=127.0.0.1|NAME=HttpClient|STATUS=200|URL=smsrebuild1.mail.10086.cn/setting/s?func=unified:getUnifiedPositionContent&sid=MTQyOTAwMDgzNjAwMTUxMzU4MDEwOQAA000008&cguid=1649024349378|REQUESTTIME=68|SIZE=2149
+[2015-04-14 16:49:02.510] [INFO] app - PID=6936|USERNUMBER=8615889682441|SID=MTQyOTAwMDgzNjAwMTUxMzU4MDEwOQAA000008|PARTID=12|CLIENTIP=127.0.0.1|NAME=HttpClient|STATUS=200|URL=addrapi.mail.10086.cn/QueryUserInfo?sid=MTQyOTAwMDgzNjAwMTUxMzU4MDEwOQAA000008&formattype=json&cguid=1649024346694|REQUESTTIME=76|SIZE=429
+[2015-04-14 16:49:02.511] [INFO] app - prepareHTML: Tue Apr 14 2015 16:49:02 GMT+0800 (中国标准时间)
+[2015-04-14 16:49:02.538] [INFO] app - renderData:  Tue Apr 14 2015 16:49:02 GMT+0800 (中国标准时间)
+[2015-04-14 16:49:02.555] [INFO] app - PID=6936|USERNUMBER=8615889682441|SID=MTQyOTAwMDgzNjAwMTUxMzU4MDEwOQAA000008|PARTID=12|CLIENTIP=127.0.0.1|NAME=HttpClient|STATUS=200|URL=smsrebuild1.mail.10086.cn/setting/s?func=info:getInfoSet&sid=MTQyOTAwMDgzNjAwMTUxMzU4MDEwOQAA000008&cguid=1649024348114|REQUESTTIME=121|SIZE=8948
+[2015-04-14 16:49:02.558] [INFO] app - prepareHTML: Tue Apr 14 2015 16:49:02 GMT+0800 (中国标准时间)
+[2015-04-14 16:49:02.571] [INFO] app - PID=6936|USERNUMBER=8615889682441|SID=MTQyOTAwMDgzNjAwMTUxMzU4MDEwOQAA000008|PARTID=12|CLIENTIP=127.0.0.1|NAME=HttpClient|STATUS=200|URL=smsrebuild1.mail.10086.cn/weather/weather?func=weather:getDefaultWeather&comefrom=54&sid=MTQyOTAwMDgzNjAwMTUxMzU4MDEwOQAA000008&cguid=1649024350345|REQUESTTIME=136|SIZE=426
+[2015-04-14 16:49:02.572] [INFO] app - renderData:  Tue Apr 14 2015 16:49:02 GMT+0800 (中国标准时间)
+[2015-04-14 16:49:02.582] [INFO] app - PID=6936|USERNUMBER=8615889682441|SID=MTQyOTAwMDgzNjAwMTUxMzU4MDEwOQAA000008|PARTID=12|CLIENTIP=127.0.0.1|NAME=HttpClient|STATUS=200|URL=smsrebuild1.mail.10086.cn/calendar/s?func=calendar:getCalendarView&comefrom=54&sid=MTQyOTAwMDgzNjAwMTUxMzU4MDEwOQAA000008&cguid=1649024357792|REQUESTTIME=147|SIZE=27707
+[2015-04-14 16:49:02.587] [INFO] app - renderData:  Tue Apr 14 2015 16:49:02 GMT+0800 (中国标准时间)
+[2015-04-14 16:49:02.616] [INFO] app - renderData:  Tue Apr 14 2015 16:49:02 GMT+0800 (中国标准时间)
+[2015-04-14 16:49:02.680] [INFO] app - PID=6936|USERNUMBER=8615889682441|SID=MTQyOTAwMDgzNjAwMTUxMzU4MDEwOQAA000008|PARTID=12|CLIENTIP=127.0.0.1|NAME=HttpClient|STATUS=200|URL=appmail.mail.10086.cn/RmWeb/mail?func=mbox:listMessages&sid=MTQyOTAwMDgzNjAwMTUxMzU4MDEwOQAA000008&cguid=1649024366621|REQUESTTIME=244|SIZE=123719
+[2015-04-14 16:49:02.693] [INFO] app - { all: '<hjyy_cmpost@139.com>',
+  name: '沪江英语',
+  addr: 'hjyy_cmpost@139.com',
+  account: 'hjyy_cmpost',
+  domain: '139.com' }
+[2015-04-14 16:49:02.695] [INFO] app - <object><int name="fid">1</int><int name="recursive">0</int><int name="ignoreCase">0</int><int name="isSearch">1</int><int name="start">1</int><int name="total">1</int><int name="limit">20</int><string name="order">receiveDate</string><string name="desc">1</string><int name="isFullSearch">2</int><object name="flags"><int name="read">1</int></object><array name="condictions"><object><string name="field">receiveDate</string><string name="operator">GE</string><int name="value">1428854400</int></object><object><string name="field">receiveDate</string><string name="operator">LE</string><int name="value">1428940800</int></object></array></object>
+[2015-04-14 16:49:02.716] [INFO] app - renderData:  Tue Apr 14 2015 16:49:02 GMT+0800 (中国标准时间)
+[2015-04-14 16:49:02.718] [INFO] app - renderData:  Tue Apr 14 2015 16:49:02 GMT+0800 (中国标准时间)
+[2015-04-14 16:49:02.737] [INFO] app - PID=6936|USERNUMBER=8615889682441|SID=MTQyOTAwMDgzNjAwMTUxMzU4MDEwOQAA000008|PARTID=12|CLIENTIP=127.0.0.1|NAME=HttpClient|STATUS=200|URL=/inner/index/mpostRecommend?comefrom=54&sid=MTQyOTAwMDgzNjAwMTUxMzU4MDEwOQAA000008&cguid=1649025116408|REQUESTTIME=226|SIZE=1106
+[2015-04-14 16:49:02.739] [ERROR] app - PID=6936|USERNUMBER=8615889682441|SID=MTQyOTAwMDgzNjAwMTUxMzU4MDEwOQAA000008|PARTID=12|CLIENTIP=127.0.0.1|NAME=HttpClient|JSONERROR=mpostRecommend
+[2015-04-14 16:49:02.743] [INFO] app - renderData:  Tue Apr 14 2015 16:49:02 GMT+0800 (中国标准时间)
+[2015-04-14 16:49:02.747] [INFO] app - PID=6936|USERNUMBER=8615889682441|SID=MTQyOTAwMDgzNjAwMTUxMzU4MDEwOQAA000008|PARTID=12|CLIENTIP=127.0.0.1|NAME=HttpClient|STATUS=200|URL=addrapi.mail.10086.cn/GetBatchContacts?sid=MTQyOTAwMDgzNjAwMTUxMzU4MDEwOQAA000008&formattype=json&cguid=1649026944214|REQUESTTIME=53|SIZE=187
+[2015-04-14 16:49:02.749] [INFO] app - prepareHTML: Tue Apr 14 2015 16:49:02 GMT+0800 (中国标准时间)
+[2015-04-14 16:49:02.751] [INFO] app - PID=6936|USERNUMBER=8615889682441|SID=MTQyOTAwMDgzNjAwMTUxMzU4MDEwOQAA000008|PARTID=12|CLIENTIP=127.0.0.1|NAME=HttpClient|STATUS=200|URL=appmail.mail.10086.cn/s?func=user:getInitDataConfig&sid=MTQyOTAwMDgzNjAwMTUxMzU4MDEwOQAA000008&cguid=1649024266104|REQUESTTIME=324|SIZE=14697
+[2015-04-14 16:49:02.754] [INFO] app - prepareHTML: Tue Apr 14 2015 16:49:02 GMT+0800 (中国标准时间)
+[2015-04-14 16:49:02.782] [INFO] app - renderData:  Tue Apr 14 2015 16:49:02 GMT+0800 (中国标准时间)
+[2015-04-14 16:49:02.793] [INFO] app - PID=6936|USERNUMBER=8615889682441|SID=MTQyOTAwMDgzNjAwMTUxMzU4MDEwOQAA000008|PARTID=12|CLIENTIP=127.0.0.1|NAME=HttpClient|STATUS=200|URL=webapp.mail.10086.cn/RmWeb/mail?func=mbox:searchMessages&sid=MTQyOTAwMDgzNjAwMTUxMzU4MDEwOQAA000008&cguid=1649026958516|REQUESTTIME=98|SIZE=869
+[2015-04-14 16:49:02.801] [INFO] app - renderData:  Tue Apr 14 2015 16:49:02 GMT+0800 (中国标准时间)
+[2015-04-14 16:49:02.830] [INFO] app - renderData:  Tue Apr 14 2015 16:49:02 GMT+0800 (中国标准时间)
+[2015-04-14 16:49:02.845] [INFO] app - PID=6936|USERNUMBER=8615889682441|SID=MTQyOTAwMDgzNjAwMTUxMzU4MDEwOQAA000008|PARTID=12|CLIENTIP=127.0.0.1|NAME=HttpClient|STATUS=200|URL=addrapi.mail.10086.cn/GetContactsBirday?sid=MTQyOTAwMDgzNjAwMTUxMzU4MDEwOQAA000008&formattype=json&comefrom=54&cguid=1649026165297|REQUESTTIME=229|SIZE=250
+[2015-04-14 16:49:02.847] [INFO] app - renderData:  Tue Apr 14 2015 16:49:02 GMT+0800 (中国标准时间)

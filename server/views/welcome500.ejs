@@ -1,0 +1,150 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>139邮箱</title>
+<script>
+document.domain = window.location.host.match(/[^.]+\.[^.]+$/)[0];
+</script>
+<script>
+    top.m139LoadScript('libs.pack.js', document);
+    top.m139LoadScript('m139.core.pack.js', document)
+    top.loadCSS(["common/global.css", "module/welcome.css"], document)
+</script>
+
+</head>
+<body>
+<div class="welcomeBox bgPadding">
+    <div>
+	    <div class="welcomeContent">
+		<div class="welcomeMain">
+			<!--消息提醒-->
+			<div id="lefttext">
+				<ul class="nessageReminding">
+                    <li></li>
+				</ul>
+			</div>
+			<!--个人邮箱信息-->
+			<div class="mailInformation mt_20 clearAll">
+				<a href="javascript:top.$App.show('account');" class="peoPhoneBox">
+                    <img  id="userImg" /></a>
+				<div class="mailInformation_funInfo fl">
+					<h2 id="hello">
+                        <a href="javascript:top.$App.show('account')" id="helloword" bh="welcome_hello"></a>，
+                    </h2>
+                    <span>
+                        <a id="g3Btn" href="javascript:;" title="G3通话"><i class="i_g3"></i></a>
+                        <a id="shequLink" href="javascript:;" title="移动微博"><i class="i_webbo"></i></a>
+                        <a id="linkFetion" href="javascript:;" title="同窗"><i class="i_schoolmate"></i></a>
+                        <!--<a id="fetionElem" href="javascript:;" title="飞信"><i class="i_fetionGray"></i></a>-->
+                    </span>
+					<p class="mailInformation_mailInfo fz_14 mt_10">
+                        <i class="i_mail"></i>
+                        <span id="unreadBox">
+                                <a onclick='top.$App.trigger("mailCommand", { command: "viewUnread", fid: 0 });' href="javascript:;" id="lnkUnread" bh="welcome_unread" class="c_457fbd">
+                                未读邮件(<var class="c_ff8157"></var>)</a>
+                            </span>
+                        <span id="otherUnRead">
+                        </span>
+                    </p>
+				</div>
+			</div>
+		</div>
+	</div>	
+
+	    <div class="welcomeAside">
+		<ul class="welcomeTab clearfix" role="tablist" id="ul_userinfo">
+			<li class="current" aria-selected="true" role="tab"><a href="javascript:;" hidefocus="hidefocus">个人信息</a></li>
+			<li aria-selected="false" role="tab"><a href="javascript:;" onclick="return false;" hidefocus="hidefocus">签到</a></li>
+			<li aria-selected="false" role="tab"><a href="javascript:;" onclick="return false;" hidefocus="hidefocus">天气</a></li>
+		</ul>	
+		<div class="welcomeTabContent">
+			<div class="welcomeTabList" role="region" style="display:block">
+                <ul>
+                    <li id="li_score">
+                        积分等级：
+                        
+                    </li>
+                    <li>上次登录：<span id="sp_lastLogin"></span> <a href="javascript:top.$App.show('selfSearch');" class="c_457fbd">查询</a></li>
+                    <li>邮箱容量：
+					    <span class="c_457fbd" id="link_capacity">
+                            <a href="javascript:top.$App.show('mobile');" class="c_457fbd">
+                            </a>
+                        </span>&nbsp;已使用(<b></b>)
+                    </li>
+                </ul>
+			</div>
+			<div class="welcomeTabList" role="region"></div>
+			<div class="welcomeTabList" role="region">
+                <div id="weatherTool"></div>
+                <!--城市-->
+                <div class="weathertips" id="cityBtnTip">
+                    <div class="tips-text">
+                        选择地点：
+                        <div class="seloption">
+                            <select id="province"></select>
+                            <select id="city">
+                                <option value="0">---城市---</option>
+                            </select>
+                        </div>
+                        <p class="current"><a id="queryWeather" href="javascript:;">查看天气</a> <a id="setWeather" href="javascript:;">设为默认</a></p><!--  链接可以击点时 加上 current  -->
+                        <a class="i_close" href="javascript:;" title="关闭"><!-- 等级3 --></a>
+                    </div>
+                    <span class="tips-top diamond"></span>
+                </div>
+                <!--天气-->
+                <div class="weathertips dayWeatherBox tipsBox" id="temperatureTips"></div>
+            </div>
+		</div>
+	</div>
+    </div>
+
+    <div>
+	    <div class="welcomeContent mt_15">
+		<div class="welcomeMain">
+			<!--运营区-->
+			<div class="operations">
+				<div class="operations_title pr_15 clearfix">
+					<ul class="fl" role="tablist" id="ul_recommand">
+						<li class="current" aria-selected="true" role="tab"><a href="javascript:;" hidefocus="true"><span>邮箱推荐</span></a></li>
+						<li aria-selected="false" role="tab"><a href="javascript:;" onclick="return false;" hidefocus="true"><span>用户中心</span></a></li>
+						<li aria-selected="false" role="tab"><a href="javascript:;" hidefocus="true"><span>实验室</span></a></li>
+						<li aria-selected="false" role="tab"><a href="javascript:;" hidefocus="true"><span>精品业务</span></a></li>
+						<li aria-selected="false" role="tab" style="display:none;"><a href="javascript:;" hidefocus="true"><span>应用商城</span></a></li>
+					</ul>	
+					<a href="javascript:;" class="setBtn fr" title="设置" id="btn_customTab"><i class="i_setn"></i></a>
+				</div>
+				<div class="scrollObj">
+					<div class="operationsInfo" id="J_auto" role="region" style="display:block;">
+                        <p id="p_scrollTab" class="smailCarousel mt_10 ta_c"><a href="javascript:;" class="current"><i></i></a><a href="javascript:;"><i></i></a><a href="javascript:;"><i></i></a><a href="javascript:;"><i></i></a></p>
+					</div>
+					<div class="operationsInfo" role="region"></div>
+					<div class="operationsInfo" role="region"></div>
+					<div class="operationsInfo" role="region"></div>
+					<div class="operationsInfo" role="region"></div>
+					<div class="operationsInfo"></div>
+				</div>
+			</div>
+		</div>
+	</div>	
+
+	    <div class="welcomeAside mt_15">
+		<!--活动中心-->
+		<div class="activityCenter">
+			<div class="activityCenter_title p_relative">
+				<h3>活动区</h3><a id="gotoAction" href="javascript:;" class="c_457fbd integration">参与积分兑换赢好礼>></a>
+			</div>
+			<div id="activityCenterInfo" class="activityCenter_info">
+            </div>
+		</div>
+	</div>
+    </div>
+</div>
+<!--页脚区-->
+<ul class="welcomeFooter">
+	<li id="bottomLink">
+    </li>
+	<li><a href="javascript:;">标准版2.3</a><span class="wfLine">-</span><a target="_top" bh="welcomeb_baseversion" id="btn_base" href="javascript:;" class="c_457fbd">基础版</a><span class="wfLine">|</span><a href="http://www.miibeian.gov.cn/" target="_blank">京ICP备05002571号</a><span class="wfLine">©</span><a href="http://www.10086.cn/" target="_blank">中国移动通信版权所有</a></li>
+</ul>
+</body>
+</html>
